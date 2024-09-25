@@ -1,6 +1,6 @@
 name: rubyscore
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -10,6 +10,8 @@ dependencies:
   dio: ^5.7.0
   flutter:
     sdk: flutter
+  flutter_any_logo: ^1.1.1
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -18,3 +20,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/

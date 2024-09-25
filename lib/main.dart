@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'app_router.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp(appRouter: AppRouter(),));
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  final AppRouter appRouter;
+
+  const MainApp({super.key, required this.appRouter});
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+       onGenerateRoute: appRouter.generateRoute,
     );
   }
 }
