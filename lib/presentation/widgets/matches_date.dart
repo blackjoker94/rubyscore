@@ -1,27 +1,66 @@
-class MatchesDate {
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rubyscore/business_logic/cubits/matches_date_cubit/matches_date_cubit.dart';
 
+class MachesDate extends StatelessWidget {
+  const MachesDate({
+    super.key,
+  });
 
-String getDate() {
-  String result = '';
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      //onTap: () => context.read<SportChooseCubit>().selectSport(index),
 
-  String date = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day).toString();
-
-  for (int i = 0; i < 10; i++) {
-    result += date[i];
+      child: BlocBuilder<MatchesDateCubit, MatchesDateState>(
+        builder: (context, state) {
+          //code
+          return Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 7),
+            decoration: BoxDecoration(
+              color: Color(0xFFF9F9FB),
+              borderRadius: BorderRadius.all(Radius.circular(45)),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Today",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Color(0xFFC2C2C2),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      "25",
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Color(0xFFC2C2C2),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      "Nov",
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Color(0xFFC2C2C2),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
-
-  return result;
-}
-String getMonthName() {
-List<String> monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
-
-// Accessing the current month name
-int currentMonth = DateTime.now().month;
-String currentMonthName = monthNames[currentMonth - 1]; // Subtract 1 because list is zero-indexed
-
-return currentMonthName;
-}
 }

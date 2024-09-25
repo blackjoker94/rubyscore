@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rubyscore/business_logic/cubits/matches_date_cubit/matches_date_cubit.dart';
 import 'package:rubyscore/business_logic/cubits/soccer_cubit/soccer_cubit.dart';
 import 'package:rubyscore/business_logic/cubits/sport_choose_cubit/sport_choose_cubit.dart';
 import 'package:rubyscore/data/repos/football_repo.dart';
@@ -26,6 +27,9 @@ class AppRouter {
                     ),
                     BlocProvider(
                       create: (context) => SportChooseCubit(),
+                    ),
+                    BlocProvider(
+                      create: (context) => MatchesDateCubit(),
                     ),
                   ],
                   child: const HomeScreen(),
