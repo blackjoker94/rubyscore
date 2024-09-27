@@ -13,20 +13,22 @@ class MatchesDateCubit extends Cubit<MatchesDateState> {
 
   void fetchDates() {
     String currentDay = dateMethods.getCurrentDay();
-    emit(CurrentDay(currentDay));
-
     String monthName = dateMethods.getMonthName();
-    emit(CurrentMonthName(monthName));
-
+    
     List<String> previousDaysNum = dateMethods.previousDaysNum();
     List<String> previousDaysNames = dateMethods.previousDaysNames();
-    emit(PreviousDaysNum(previousDaysNum));
-    emit(PreviousDaysNames(previousDaysNames));
-
+    
     List<String> comingDaysNum = dateMethods.comingDaysNum();
     List<String> comingDaysNames = dateMethods.comingDaysNames();
-    emit(CommingDaysNum(comingDaysNum));
-    emit(CommingDaysNames(comingDaysNames));
+    
+    emit(MatchesDateUpdated(
+      currentDay: currentDay,
+      monthName: monthName,
+      previousDaysNumList: previousDaysNum,
+      previousDaysNamesList: previousDaysNames,
+      comingDaysNumList: comingDaysNum,
+      comingDaysNamesList: comingDaysNames,
+    ));
   }
 
   void isToday(String date) {

@@ -5,42 +5,23 @@ sealed class MatchesDateState {}
 
 final class MatchesDateInitial extends MatchesDateState {}
 
-class CurrentMonthName extends MatchesDateState {
-  final String monthName;
-  
-  CurrentMonthName(this.monthName);
-}
-
-class PreviousDaysNum extends MatchesDateState {
-  final List<String> previousDaysNumList;
-  
-  PreviousDaysNum(this.previousDaysNumList);
-}
-
-class PreviousDaysNames extends MatchesDateState {
-  final List<String> previousDaysNamesList;
-  
-  PreviousDaysNames(this.previousDaysNamesList);
-}
-
-class CurrentDay extends MatchesDateState {
+class MatchesDateUpdated extends MatchesDateState {
   final String currentDay;
-  
-  CurrentDay(this.currentDay);
-}
+  final String monthName;
+  final List<String> previousDaysNumList;
+  final List<String> previousDaysNamesList;
+  final List<String> comingDaysNumList;
+  final List<String> comingDaysNamesList;
 
-class CommingDaysNum extends MatchesDateState {
-  final List<String> currentDaysNumList;
-  
-  CommingDaysNum(this.currentDaysNumList);
+  MatchesDateUpdated({
+    required this.currentDay,
+    required this.monthName,
+    required this.previousDaysNumList,
+    required this.previousDaysNamesList,
+    required this.comingDaysNumList,
+    required this.comingDaysNamesList,
+  });
 }
-
-class CommingDaysNames extends MatchesDateState {
-  final List<String> currentDaysNamesList;
-  
-  CommingDaysNames(this.currentDaysNamesList);
-}
-
 class IsToday extends MatchesDateState {
   final bool isTodaystate;
   

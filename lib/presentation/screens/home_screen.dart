@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:rubyscore/business_logic/cubits/matches_date_cubit/matches_date_cubit.dart';
 import 'package:rubyscore/constants/colors.dart';
 import 'package:rubyscore/presentation/widgets/sport_catergory.dart';
 import 'package:rubyscore/presentation/widgets/matches_date.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     context.read<MatchesDateCubit>().fetchDates();
     return Scaffold(
       backgroundColor: Color(0xFFF9F9FB),
       appBar: AppBar(
@@ -89,20 +91,51 @@ class HomeScreen extends StatelessWidget {
             ),
             Container(
               height: 90,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  //Todo => mesh 3aref a3melha bel cubit
-                  MachesDate(),
-                  MachesDate(),
-                  MachesDate(),
-                  MachesDate(),
-                  MachesDate(),
-                  MachesDate(),
-                  MachesDate(),
-                ],
+              child: BlocBuilder<MatchesDateCubit, MatchesDateState>(
+                builder: (context, state) {
+                  if (state is MatchesDateUpdated) {
+                    return ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        // Previous days
+                        MatchesDate(
+                          dayNum: state.previousDaysNumList[1],
+                          dayName: state.previousDaysNamesList[1],
+                        ),
+                        MatchesDate(
+                          dayNum: state.previousDaysNumList[0],
+                          dayName: state.previousDaysNamesList[0],
+                        ),
+                        // Today
+                        MatchesDate(
+                          dayNum: state.currentDay,
+                          dayName: 'Today',
+                          isToday: true,
+                        ),
+                        // Coming days
+                        MatchesDate(
+                          dayNum: state.comingDaysNumList[0],
+                          dayName: state.comingDaysNamesList[0],
+                        ),
+                        MatchesDate(
+                          dayNum: state.comingDaysNumList[1],
+                          dayName: state.comingDaysNamesList[1],
+                        ),
+                      ],
+                    );
+                  } else if (state is MatchesDateInitial) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Center(
+                      child: Text('Error loading dates'),
+                    );
+                  }
+                },
               ),
             ),
+
           ],
         );
       }),

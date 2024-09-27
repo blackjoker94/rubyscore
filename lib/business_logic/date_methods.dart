@@ -30,7 +30,7 @@ class DateMethods {
     List<String> daysList = [];
     DateTime today = DateTime.now();
 
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i <= 3; i++) {
       String result = '';
       DateTime nextDay = today.add(Duration(days: i));
       for (int i = 8; i < 10; i++) {
@@ -46,7 +46,7 @@ class DateMethods {
     List<String> daysList = [];
     DateTime today = DateTime.now();
 
-    for (int i = 1; i <= 3; i++) {
+    for (int i = 1; i <= 2; i++) {
       String result = '';
       DateTime nextDay = today.subtract(Duration(days: i));
       for (int i = 8; i < 10; i++) {
@@ -73,7 +73,7 @@ class DateMethods {
 
   int currentDay = DateTime.now().weekday;
 
-  for (int i = 1; i <= 5; i++) {
+  for (int i = 1; i <= 3; i++) {
     int previousDayIndex = (currentDay + i - 1 + 7) % 7; // Calculate the index for the previous days
     String previousDayName = weekDays[previousDayIndex];
 
@@ -89,7 +89,7 @@ class DateMethods {
 
   int currentDay = DateTime.now().weekday;
 
-  for (int i = 1; i <= 3; i++) {
+  for (int i = 1; i <= 2; i++) {
     int previousDayIndex = (currentDay - i - 1 + 7) % 7; // Calculate the index for the previous days
     String previousDayName = weekDays[previousDayIndex];
 
